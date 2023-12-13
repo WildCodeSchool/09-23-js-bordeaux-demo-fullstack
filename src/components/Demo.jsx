@@ -6,8 +6,6 @@ const Demo = () => {
   const adminContext = useAdmin();
   const appContext = useAppDemo();
 
-  console.log("adminContext", adminContext);
-  console.log("appContext", appContext);
   return <h1>Demo</h1>;
 };
 
