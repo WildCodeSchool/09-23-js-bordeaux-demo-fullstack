@@ -5,6 +5,8 @@ const adminContext = createContext();
 const AdminContextProvider = ({ children }) => {
   const [isAdmin, setIsAdmin] = useState(true);
 
+  //méthodes supplémentaires pour protéger des routes liées à l'administrateur
+
   return (
     <adminContext.Provider value={{ isAdmin }}>
       {children}
