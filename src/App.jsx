@@ -6,14 +6,12 @@ function App() {
   const { login, logout, user } = useAppDemo();
 
   return (
-    <>
+    <div className="container mt-5">
       <Outlet />
-      <h1>{user.admin ? "connecté" : "déconnecté"}</h1>
-      <button onClick={login}>Login</button>
-      <Link to="/admin/demo">AdminDemo</Link>
-      <button onClick={logout}>Logout</button>
-      <Link to="/demo">Demo</Link>
-    </>
+      <h1>{user.admin ? "Connecté" : "Déconnecté"}</h1>
+      <Link to="/login">Login</Link>
+      <Link to="/register">Register</Link>
+    </div>
   );
 }
 
