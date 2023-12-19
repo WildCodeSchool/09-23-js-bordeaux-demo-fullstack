@@ -9,10 +9,6 @@ function AdminContextProvider({ children }) {
   const [isAdmin, setIsAdmin] = useState(true);
   const appContext = useAppDemo();
 
-  if (appContext.user.admin === false) {
-    return <Navigate to="/demo" />;
-  }
-
   const adminData = useMemo(
     () => ({ isAdmin, setIsAdmin }),
     [isAdmin, setIsAdmin]
@@ -21,7 +17,9 @@ function AdminContextProvider({ children }) {
   // méthodes supplémentaires pour protéger des routes liées à l'administrateur
 
   return (
-    <adminContext.Provider value={adminData}>{children}</adminContext.Provider>
+    appContext.user.admin === false
+    ? <Navigate to="/demo" />
+    : <adminContext.Provider value={adminData}>{children}</adminContext.Provider>
   );
 }
 

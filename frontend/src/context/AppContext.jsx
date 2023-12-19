@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo, useState } from "react";
+import { createContext, useCallback, useContext, useMemo, useState } from "react";
 import PropTypes from "prop-types";
 import { MDBAlert } from "mdb-react-ui-kit";
 import { useNavigate } from "react-router-dom";
@@ -12,8 +12,7 @@ function AppContextProvider({ children }) {
   const navigate = useNavigate();
   const getUsers = () => JSON.parse(localStorage.getItem("users") ?? "[]");
 
-  const login = (credentials) => {
-    // setUser({ admin: true });
+  const login = useCallback((credentials) => {
     const users = getUsers();
 
     const memoryUser = users.find(
@@ -33,9 +32,9 @@ function AppContextProvider({ children }) {
       }
     }
     return navigate("/demo");
-  };
+  }, [navigate]);
 
-  const register = (newUser) => {
+  const register = useCallback((newUser) => {
     const users = getUsers();
 
     if (!users.find((userdb) => userdb.email === newUser.email)) {
@@ -45,11 +44,11 @@ function AppContextProvider({ children }) {
     } else {
       alert("Vous êtes déjà inscrit !");
     }
-  };
+  }, []);
 
-  const logout = () => {
-    setUser({ admin: false });
-  };
+  const logout = useCallback(() => {
+    setUser(undefined);
+  }, []);
 
   // exemple méthodes pour communiquer avec une api
 

@@ -1,16 +1,10 @@
-import React from "react";
 import {
   MDBMultiCarousel,
   MDBMultiCarouselItem,
 } from "mdb-react-multi-carousel";
 import { MDBLightbox } from "mdb-react-ui-kit";
-// import { useAppDemo } from "../context/AppContext";
-// import { useAdmin } from "../context/AdminContext";
 
 export default function Demo() {
-  // const adminContext = useAdmin();
-  // const appContext = useAppDemo();
-
   return (
     <MDBLightbox>
       <MDBMultiCarousel lightbox>
