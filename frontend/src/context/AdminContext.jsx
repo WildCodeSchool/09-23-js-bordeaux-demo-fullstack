@@ -16,10 +16,10 @@ function AdminContextProvider({ children }) {
 
   // méthodes supplémentaires pour protéger des routes liées à l'administrateur
 
-  return (
-    appContext.user.admin === false
-    ? <Navigate to="/demo" />
-    : <adminContext.Provider value={adminData}>{children}</adminContext.Provider>
+  return appContext.user.admin === false ? (
+    <Navigate to="/demo" />
+  ) : (
+    <adminContext.Provider value={adminData}>{children}</adminContext.Provider>
   );
 }
 

@@ -1,4 +1,10 @@
-import { createContext, useCallback, useContext, useMemo, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from "react";
 import PropTypes from "prop-types";
 import { MDBAlert } from "mdb-react-ui-kit";
 import { useNavigate } from "react-router-dom";
@@ -12,27 +18,30 @@ function AppContextProvider({ children }) {
   const navigate = useNavigate();
   const getUsers = () => JSON.parse(localStorage.getItem("users") ?? "[]");
 
-  const login = useCallback((credentials) => {
-    const users = getUsers();
+  const login = useCallback(
+    (credentials) => {
+      const users = getUsers();
 
-    const memoryUser = users.find(
-      (userdb) =>
-        userdb.email === credentials.email &&
-        userdb.password === credentials.password
-    );
+      const memoryUser = users.find(
+        (userdb) =>
+          userdb.email === credentials.email &&
+          userdb.password === credentials.password
+      );
 
-    if (!memoryUser) {
-      alert("Identifiants incorrects !");
-    } else {
-      alert(`Content de vous revoir ${credentials.email}`);
-      setUser(memoryUser);
+      if (!memoryUser) {
+        alert("Identifiants incorrects !");
+      } else {
+        alert(`Content de vous revoir ${credentials.email}`);
+        setUser(memoryUser);
 
-      if (memoryUser.admin) {
-        return navigate("/admin/demo");
+        if (memoryUser.admin) {
+          return navigate("/admin/demo");
+        }
       }
-    }
-    return navigate("/demo");
-  }, [navigate]);
+      return navigate("/demo");
+    },
+    [navigate]
+  );
 
   const register = useCallback((newUser) => {
     const users = getUsers();
